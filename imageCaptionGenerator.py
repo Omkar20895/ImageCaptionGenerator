@@ -29,6 +29,9 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.layers import Input, Dense, Concatenate, Dropout, Embedding, add
 from keras.layers.recurrent import LSTM, GRU, SimpleRNN
 
+"""
+Loading the text data
+"""
 textfile_train = open("./Flickr8k.token.txt", "r")
 doc = textfile_train.read()
 
@@ -39,6 +42,9 @@ new_df = df.copy()
 new_df["Image_Name"]= new_df.iloc[:,0].str.slice(0,-2)
 
 
+"""
+Pre-processing all the text descriptions
+"""
 imageDescription = dict()
 
 for rows in new_df.iterrows():
@@ -59,8 +65,9 @@ for key in new_dict.keys():
 print('Original Vocabulary Size: %d' % len(vocabulary))
 
 
-# In[8]:
-
+"""
+Removing all the words with frequence of appearance < 10
+"""
 captions=[]
 word_count= dict()
 
